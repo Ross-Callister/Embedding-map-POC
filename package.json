@@ -1,0 +1,20 @@
+{
+  "name": "embedding_mapping_poc",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "tsc --noEmit && tsx src/index.ts"
+  },
+  "description": "A test for using embeddings from Bedrock to map elements from two lists of strings to each other",
+  "main": "src/index.ts",
+  "author": "Ross Callister",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.758.0",
+    "better-sqlite3": "^11.8.1",
+    "tsx": "^4.19.3",
+    "typescript": "^5.8.2"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.12"
+  }
+}
