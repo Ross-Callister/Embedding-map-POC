@@ -1,8 +1,16 @@
-export function cosineSimilarity(vecA: number[], vecB: number[]): number {
-  const dotProduct = vecA.reduce((sum, a, idx) => sum + a * vecB[idx], 0);
-  const magnitudeA = Math.sqrt(vecA.reduce((sum, a) => sum + a * a, 0));
-  const magnitudeB = Math.sqrt(vecB.reduce((sum, b) => sum + b * b, 0));
-  return dotProduct / (magnitudeA * magnitudeB);
+import { BigNumber, divide, dot, multiply, norm } from "mathjs";
+
+export function cosineSimilarity(
+  vecA: number[],
+  vecB: number[]
+): number | BigNumber {
+  const dotProduct = dot(vecA, vecB);
+  const magnitudeA = norm(vecA);
+  const magnitudeB = norm(vecB);
+  return divide(
+    dotProduct,
+    multiply(magnitudeA, magnitudeB) as BigNumber | number
+  ) as number | BigNumber;
 }
 
 export function euclidDistance(vecA: number[], vecB: number[]): number {

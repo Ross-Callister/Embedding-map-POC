@@ -1,10 +1,11 @@
+import { max } from "mathjs";
 import { EmbeddingHelper } from "./embeddingHelper";
 import { cosineSimilarity, euclidDistance } from "./maths";
 import {
   getMapFromStrings,
   getMapToStrings,
   getTrueMapping,
-} from "./testData/data";
+} from "./testData/data2";
 
 async function main() {
   const embeddingHelper = new EmbeddingHelper("vectors.db");
@@ -38,15 +39,12 @@ async function main() {
   );
 
   const mapping = columns.map((column, idx) => {
-    const input =
-      inputs[similarities[idx].indexOf(Math.max(...similarities[idx]))];
+    const input = inputs[similarities[idx].indexOf(max(...similarities[idx]))];
     return {
       column,
       input,
       similarity:
-        similarities[idx][
-          similarities[idx].indexOf(Math.max(...similarities[idx]))
-        ],
+        similarities[idx][similarities[idx].indexOf(max(...similarities[idx]))],
     };
   });
 
