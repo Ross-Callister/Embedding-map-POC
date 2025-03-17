@@ -6,7 +6,7 @@ import {
 import { NovaHelper } from "./novaHelper";
 
 const bedrockClient = new BedrockRuntimeClient({
-  region: "ap-southeast-2",
+  region: "us-west-2",
 });
 
 export async function getEmbeddingFromString(str: string): Promise<number[]> {
@@ -17,19 +17,19 @@ Write the response in <response> tags and do not elaborate on the explanation.
 <start>`);
   novaHelper.addUserMessage("Name: prod_name");
   novaHelper.addAssistantMessage(
-    "<response>prod_name refers to the product name, this signifies the name of the product</response>"
+    "<response>prod_name refers to the product name, this signifies the name used to identify the specific product</response>"
   );
   novaHelper.addUserMessage("Name: Due Date");
   novaHelper.addAssistantMessage(
-    "<response>Due Date refers to the payment deadline, the date by which the thing is to be paid for</response>"
+    "<response>Due Date refers to a deadline or expected completion date. In particular it often refers to payment of a bill or major project milestones.</response>"
   );
   novaHelper.addUserMessage("Name: Total Price");
   novaHelper.addAssistantMessage(
-    "<response>Total Price refers to the total cost, the total amount of money paid for the product</response>"
+    "<response>Total Price refers to the total sum of costs associated with a product or service, the total amount of money paid</response>"
   );
   novaHelper.addUserMessage("Name: status");
   novaHelper.addAssistantMessage(
-    "<response>status refers to the current state or condition of a project</response>"
+    "<response>status refers to the current state, condition, or situation of a project or process</response>"
   );
 
   novaHelper.addUserMessage("Name: " + str);
@@ -38,7 +38,7 @@ Write the response in <response> tags and do not elaborate on the explanation.
     //first let's generate some knowledge using the LLM
     const response: InvokeModelCommandOutput = await bedrockClient.send(
       new InvokeModelCommand({
-        modelId: "apac.amazon.nova-lite-v1:0",
+        modelId: "us.amazon.nova-lite-v1:0",
         contentType: "application/json",
         accept: "application/json",
         body: JSON.stringify(novaHelper.getRequestBody()),

@@ -11,7 +11,7 @@ export class EmbeddingHelper {
   async getEmbeddingFromString(str: string): Promise<number[]> {
     const existingEmbedding = this.databaseHelper.getVector(str);
     if (existingEmbedding !== null) {
-      console.log("cache hit");
+      // console.log("cache hit");
       return existingEmbedding;
     }
 
